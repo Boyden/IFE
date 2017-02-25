@@ -1,0 +1,91 @@
+input{
+	display: none;
+}
+.radio label{
+	display: inline-block;
+	margin: 1px auto 1px auto;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	border:1px solid #bbb;
+}
+.radio span{
+	display: inline-block;
+	width: 20px;
+	height: 16px;
+}
+.radio label:before{
+	content: "";
+    display: inline-block;
+    background-color: #fff;
+    margin: 4px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+.radio input:checked + label:before{
+    background-color: #d83c30;
+}
+.checkbox label:before{
+	content: "\221A";
+    display: inline-block;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    border: 2px solid #bbb;
+}
+.checkbox input:checked + label:before{
+    color: #d83c30;
+    border: 2px solid #d83c30;
+}
+.radiosprite label{
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+}
+.radiosprite label:before{
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url("./sprite.png") no-repeat;
+	background-position: 100px 100px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+}
+.radiosprite input:checked + label:before{
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url("./sprite.png") no-repeat;
+	background-position: -59px -10px;
+    border-radius: 50%;
+}
+.checkboxsprite label{
+	display: inline-block;
+	height: 20px;
+	width: 20px;
+}
+.checkboxsprite label:before{
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url("./sprite.png") no-repeat;
+	background-position: 100px 100px;
+    border-radius: 5%;
+    border: 1px solid #ccc;
+}
+.checkboxsprite input:checked + label:before{
+	content: "";
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url("./sprite.png") no-repeat;
+	background-position: -59px -31px;
+    border-radius: 5%;
+}
