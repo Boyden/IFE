@@ -13,7 +13,8 @@ var obj = {
        word: undefined, //Scrapying Keyword
        time: undefined, //Time Consumed
        dataList:[] // List of Scrapying Results
-     };
+     },
+     result = {};
 phantom.outputEncoding="gbk";
 if (system.args.length === 1) {
     console.log('Error: No Keyword.');
@@ -31,13 +32,7 @@ if (system.args.length === 1) {
           phantom.exit();
         } else {
           var doc = page.evaluate(function() {
-            var obj = {
-                  code: 1, //Status Code, 1 for success, 0 for failed
-                  msg: "success", //Returned Message
-                  word: undefined, //Scrapying Keyword
-                  time: undefined, //Time Consumed
-                  dataList:[] // List of Scrapying Results
-                }, arr = {};
+            var obj = [], arr = {};
                 var text = document.getElementsByClassName('c-container');
                 for (var i = 0; i < text.length; i++) {
                   arr = {};
@@ -50,18 +45,21 @@ if (system.args.length === 1) {
                     } else {
                       arr.pic = 'none';
                     }
-                    obj.dataList.push(arr);
+                    obj.push(arr);
                   }
                 }
                 return obj;
               });
-          doc.word = system.args[1];
+          result.code = 1;
+          result.msg = "success";
+          result.word = system.args[1];
           t = (Date.now() - t)/1000 + 'seconds';
-          doc.time = t;
-          doc = JSON.stringify(doc, undefined, 4);
-          console.log("received:" + doc);
+          result.time = t;
+          result.dataList = doc;
+          result = JSON.stringify(result, undefined, 4);
+          console.log("received:" + result);
           var file=fs.open('result.json','w');
-          file.write(doc);
+          file.write(result);
           file.close();
           phantom.exit();
 
@@ -69,5 +67,3 @@ if (system.args.length === 1) {
 
       });
 }
-
-
