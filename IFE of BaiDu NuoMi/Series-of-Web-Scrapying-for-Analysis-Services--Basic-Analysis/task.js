@@ -7,14 +7,7 @@ var fs = require("fs");
 var settings = {
   encoding: "utf8"
 };
-var obj = {
-       code: undefined, //Status Code, 1 for success, 0 for failed
-       msg: undefined, //Returned Message
-       word: undefined, //Scrapying Keyword
-       time: undefined, //Time Consumed
-       dataList:[] // List of Scrapying Results
-     },
-     result = {};
+var obj = {},result = {};
 phantom.outputEncoding="gbk";
 if (system.args.length === 1) {
     console.log('Error: No Keyword.');
@@ -24,10 +17,10 @@ if (system.args.length === 1) {
       console.log('https://www.baidu.com/s?ie=utf-8&f=8&wd='+system.args[1]);
       page.open(encodeURI('https://www.baidu.com/s?ie=utf-8&f=8&wd='+system.args[1]), settings, function(status) {
         if (status !== 'success') {
-          obj.code = 0;
-          obj.time = 0;
-          obj.msg = "failed";
-          obj.word = system.args[1];
+          obj.code = 0; //Status Code, 1 for success, 0 for failed
+          obj.time = 0; //Time Consumed
+          obj.msg = "failed"; //Returned Message
+          obj.word = system.args[1]; //Scrapying Keyword
           console.log('received: ' + JSON.stringify(obj));
           phantom.exit();
         } else {
