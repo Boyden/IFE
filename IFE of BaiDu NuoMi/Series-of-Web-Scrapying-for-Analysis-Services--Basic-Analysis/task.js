@@ -45,6 +45,8 @@ var obj = {
                   arr.pic = text[i].children[1].children[0].children[0].children[0].src;
                   obj.dataList.push(arr);
                 }
+                 t = Date.now() - t;
+                obj.time = t/1000 + 'seconds';
                 return JSON.stringify(obj);
               });
           console.log("received:" + doc);
