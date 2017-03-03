@@ -1,5 +1,5 @@
 
-// phantomjs ../task.js keyword
+//Example: phantomjs ../task.js keyword
 var t = Date.now();
 var webPage = require('webpage');
 var page = webPage.create();
