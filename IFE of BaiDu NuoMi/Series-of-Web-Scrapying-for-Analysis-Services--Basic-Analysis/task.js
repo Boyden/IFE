@@ -1,4 +1,6 @@
+
 // phantomjs ../task.js keyword
+var t = Date.now();
 var webPage = require('webpage');
 var page = webPage.create();
 var system = require('system');
@@ -8,7 +10,7 @@ var settings = {
 };
 var obj = {
        code: undefined, //Status Code, 1 for success, 0 for failed
-       msg: system.args[1], //Returned Message
+       msg: undefined, //Returned Message
        word: undefined, //Scrapying Keyword
        time: undefined, //Time Consumed
        dataList:[] // List of Scrapying Results
@@ -19,12 +21,11 @@ if (system.args.length === 1) {
     phantom.exit();
   }else {
       page.open('https://www.baidu.com/s?ie=utf-8&wd='+system.args[1], settings, function(status) {
-        var t = Date.now();
         if (status !== 'success') {
           obj.code = 0;
           obj.time = 0;
           obj.msg = "failed";
-          obj.word = undefined;
+          obj.word = system.args[1];
           console.log('received: ' + JSON.stringify(obj));
           phantom.exit();
         } else {
@@ -49,10 +50,12 @@ if (system.args.length === 1) {
                   }
                   obj.dataList.push(arr);
                 }
-                //t = Date.now() - t;
-                //obj.time = t/1000 + 'seconds';
-                return JSON.stringify(obj, undefined, 4);
+                return obj;
               });
+          doc.word = system.args[1];
+          t = (Date.now() - t)/1000 + 'seconds';
+          doc.time = t;
+          doc = JSON.stringify(doc, undefined, 4);
           console.log("received:" + doc);
           var file=fs.open('result.json','w');
           file.write(doc);
@@ -63,4 +66,3 @@ if (system.args.length === 1) {
 
       });
 }
-
