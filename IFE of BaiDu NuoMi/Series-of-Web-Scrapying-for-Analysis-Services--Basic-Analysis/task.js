@@ -1,5 +1,5 @@
 
-// phantomjs --output-encoding=gbk ../task.js keyword
+// phantomjs ../task.js keyword
 var webPage = require('webpage');
 var page = webPage.create();
 var system = require('system');
