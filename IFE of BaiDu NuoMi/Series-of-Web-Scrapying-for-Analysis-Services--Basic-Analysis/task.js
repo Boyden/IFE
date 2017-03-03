@@ -16,7 +16,7 @@ var obj = {
      };
 phantom.outputEncoding="gbk";
 if (system.args.length === 1) {
-    console.log('Error: No Keyword:');
+    console.log('Error: No Keyword.');
     phantom.exit();
   }else {
       system.args[1] = encodeURI(system.args[1]);
