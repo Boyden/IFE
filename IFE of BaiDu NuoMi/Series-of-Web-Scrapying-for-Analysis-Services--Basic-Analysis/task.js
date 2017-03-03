@@ -1,8 +1,8 @@
-
 // phantomjs ../task.js keyword
 var webPage = require('webpage');
 var page = webPage.create();
 var system = require('system');
+var fs = require("fs");
 var settings = {
   encoding: "utf8"
 };
@@ -51,9 +51,12 @@ if (system.args.length === 1) {
                 }
                 //t = Date.now() - t;
                 //obj.time = t/1000 + 'seconds';
-                return JSON.stringify(obj);
+                return JSON.stringify(obj, undefined, 4);
               });
           console.log("received:" + doc);
+          var file=fs.open('result.json','w');
+          file.write(doc);
+          file.close();
           phantom.exit();
 
         };
